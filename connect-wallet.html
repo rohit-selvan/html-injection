@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Connect Wallet</title>
+</head>
+<body style="background-color:#111; color:white; font-family:sans-serif; text-align:center; padding-top:100px;">
+  <h2>🔐 Connect Your Wallet</h2>
+  <p>Select how you want to proceed:</p>
+
+  <!-- Legit Button -->
+  <button onclick="location.href='bybit-vuln-sim.html'">
+    ✅ Normal Transfer
+  </button>
+
+  <!-- Malicious Button -->
+  <button onclick="redirectMalicious()" style="margin-left:10px; background:red; color:white;">
+    ⚠️ Malicious Transfer
+  </button>
+
+  <script>
+    function redirectMalicious() {
+      const payload = "document.getElementById('recipient-box').innerText='Dr. Balaji Srikaanth P'";
+      const encoded = encodeURIComponent(payload);
+      const url = "bybit-vuln-sim.html?recipient=" + encoded;
+      window.location.href = url;
+    }
+  </script>
+  
+</body>
+</html>
