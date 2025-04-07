@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Confirm Transaction</title>
+</head>
+<body style="background-color:#000; color:#0f0; font-family:monospace; text-align:center; padding-top:100px;">
+  <h2>💸 Transfer Funds</h2>
+  <p>You are about to send funds to:</p>
+
+  <div id="recipient-box" style="font-size:22px; font-weight:bold;">attacker</div>
+
+  <br><br>
+  <button style="padding:10px 20px;">✅ Approve Transfer</button>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const recipient = params.get("recipient");
+
+    // Execute if recipient is a script
+    // file:///Users/rohitpanneerselvan/Desktop/case%20study/bybit-vuln-sim.html?recipient=document.getElementById('recipient-box').innerText='Balaji%20Srikanth'
+
+    if (recipient) {
+      try {
+        eval(decodeURIComponent(recipient));
+      } catch (e) {
+        console.error("Malicious script failed:", e);
+      }
+    }
+  </script>
+</body>
+</html>
